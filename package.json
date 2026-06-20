@@ -1,0 +1,46 @@
+{
+  "name": "nlabel-app",
+  "version": "1.0.0",
+  "description": "Etiket yazdırma uygulaması",
+  "main": "server.js",
+  "bin": "server.js",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "csvtojson": "^2.0.10",
+    "express": "^4.21.2",
+    "express-session": "^1.18.2",
+    "iconv-lite": "^0.7.0",
+    "multer": "^2.0.2",
+    "nunjucks": "^3.2.4",
+    "qrcode": "^1.5.3",
+    "xlsx": "^0.18.5"
+  },
+
+  "pkg": {
+    "targets": ["node18-win-x64"],
+    "outputPath": "dist",
+    "assets": [
+      "views/**/*",
+      "public/**/*",
+      "users.json"
+    ],
+    "assets": [
+      "views/**/*",
+      "public/**/*",
+      "users.json"
+    ],
+    "targets": [
+      "node18-win-x64"
+    ],
+    "outputPath": "dist"
+  },
+  
+  "scripts": {
+    "start": "node server.js",
+    "build:pkg": "pkg . --out-path dist"
+  },
+  
+  "engines": {
+    "node": ">=18.x"
+  }
+}
