@@ -6,8 +6,9 @@ on:
       - 'v*'
   workflow_dispatch: {}
 
-# Global olarak Node uyarısını kapatan çevre değişkeni
+# GitHub'ın Haziran 2026 kurallarına göre uyarılardan kurtulmak için resmi değişkenler
 env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
   ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
 
 jobs:
@@ -18,7 +19,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0   # tag işlemleri için çok önemli!
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -37,6 +38,7 @@ jobs:
       - name: List dist
         run: dir dist
 
+      # Manuel tetiklemelerde veya tag durumlarında etiket kontrolü (PowerShell)
       - name: Create tag if not exists
         run: |
           git config user.name "github-actions"
