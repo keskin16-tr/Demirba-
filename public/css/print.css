@@ -160,99 +160,200 @@
   /* ŞABLON 2: KESİN SINIRLANDIRILMIŞ DİKEY TASARIM       */
   /* ---------------------------------------------------- */
 
-  .etiket-kutu-2 {
-      /* 22mm x 32mm kesin kilit */
-      width: 22mm !important; 
-      height: 32mm !important;
-      padding: 0.5mm !important;
-      box-sizing: border-box !important;
-      overflow: hidden !important; /* Dışarı asla taşamaz */
-    page-break-after: always !important;
-    page-break-inside: avoid !important;
-    /* Flexbox'ı sadece etiket-kutu-2 kullanacağı için, genel kutuda tanımlamıyoruz */
+//  .etiket-kutu-2 {
+//      /* 22mm x 32mm kesin kilit */
+//      width: 22mm !important; 
+//      height: 32mm !important;
+//      padding: 0.5mm !important;
+//      box-sizing: border-box !important;
+//      overflow: hidden !important; /* Dışarı asla taşamaz */
+//    page-break-after: always !important;
+//    page-break-inside: avoid !important;
+//    /* Flexbox'ı sadece etiket-kutu-2 kullanacağı için, genel kutuda tanımlamıyoruz */
 
-      /* ETİKET TAŞIYORDU — DÜZELTİLDİ */
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: space-between !important;
+//      /* ETİKET TAŞIYORDU — DÜZELTİLDİ */
+//      display: flex !important;
+//      flex-direction: column !important;
+//      align-items: center !important;
+//      justify-content: space-between !important;
 
-      background-color: white;
-      page-break-after: always !important;
-  }
+//      background-color: white;
+//      page-break-after: always !important;
+//  }
 
-  /* Tüm alt öğeler için marjin sıfırlama */
-  .etiket-kutu-2 * {
-      margin: 0 !important;
-      padding: 0 !important;
-      line-height: 1.1 !important;
-      box-sizing: border-box !important;
-      max-width: 100% !important;
-  }
+//  /* Tüm alt öğeler için marjin sıfırlama */
+//  .etiket-kutu-2 * {
+//      margin: 0 !important;
+//      padding: 0 !important;
+//      line-height: 1.1 !important;
+//      box-sizing: border-box !important;
+//      max-width: 100% !important;
+//  }
 
-  /* 1. KURUM ADI (3mm) */
-  .etiket-kutu-2 .kurum-adi-2 {
-      height: 4mm !important;
-      font-size: 5pT !important;
-      font-weight: 900;
-      text-align: center;
-      overflow: hidden;
-      white-space: wrap;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
+//  /* 1. KURUM ADI (3mm) */
+//  .etiket-kutu-2 .kurum-adi-2 {
+//      height: 4mm !important;
+//      font-size: 5pT !important;
+//      font-weight: 900;
+//      text-align: center;
+//      overflow: hidden;
+//      white-space: wrap;
+//      display: flex;
+//      align-items: center;
+//      justify-content: center;
+//  }
 
-  /* 2. QR KOD (14mm – taşmayı önler) */
-  .etiket-kutu-2 .qr-cell-2 {
-      height: 20mm !important;
-      width: 20mm !important;
-      display: flex !important;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-  }
+//  /* 2. QR KOD (14mm – taşmayı önler) */
+//  .etiket-kutu-2 .qr-cell-2 {
+//      height: 20mm !important;
+//      width: 20mm !important;
+//      display: flex !important;
+//      align-items: center;
+//      justify-content: center;
+//      flex-shrink: 0;
+//  }
 
-  .etiket-kutu-2 .qr-cell-2 img {
-      max-width: 100% !important;
-      max-height: 100% !important;
-      display: block;
-  }
+//  .etiket-kutu-2 .qr-cell-2 img {
+//      max-width: 100% !important;
+//      max-height: 100% !important;
+//      display: block;
+//  }
 
-  /* 3. ALT VERİ ALANI (Kalan alan) */
-  .etiket-kutu-2 .veri-alani-2 {
-      width: 100%;
-      height: 7mm !important;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-  }
+//  /* 3. ALT VERİ ALANI (Kalan alan) */
+//  .etiket-kutu-2 .veri-alani-2 {
+//      width: 100%;
+//      height: 7mm !important;
+//      display: flex;
+//      flex-direction: column;
+//      align-items: center;
+//      justify-content: center;
+//      overflow: hidden;
+//  }
 
-  /* KÜNYE NO */
-  .etiket-kutu-2 .kunye-no-2 {
-      height: 5mm !important;
-      font-size: 9pt !important;
-      font-weight: bold;
-      text-align: center;
-      white-space: nowrap;
-      overflow: hidden;
-  }
+//  /* KÜNYE NO */
+//  .etiket-kutu-2 .kunye-no-2 {
+//      height: 5mm !important;
+//      font-size: 9pt !important;
+//      font-weight: bold;
+//      text-align: center;
+//      white-space: nowrap;
+//      overflow: hidden;
+//  }
 
-  /* ÜRÜN ADI (maks 2 satır) */
-  .etiket-kutu-2 .urun-adi-2 {
-      height: 4mm !important;
-      font-size: 4px !important;
-      text-align: center;
-      overflow: hidden;
+//  /* ÜRÜN ADI (maks 2 satır) */
+//  .etiket-kutu-2 .urun-adi-2 {
+//      height: 4mm !important;
+//      font-size: 4px !important;
+//      text-align: center;
+//      overflow: hidden;
 
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-  }
+//      display: -webkit-box;
+//      -webkit-line-clamp: 2;
+//      -webkit-box-orient: vertical;
+//  }
 
+    /* ---------------------------------------------------- */
+    /* ŞABLON 2: BASİT ETİKET (TABLO)                     */
+    /* ---------------------------------------------------- */
+  
+.etiket-kutu-2 {
+  /* Orijinal kesin kilit boyutlar */
+  width: 32mm !important; 
+  height: 32mm !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important; 
+  page-break-after: always !important;
+  page-break-inside: avoid !important;
+  background-color: white;
 
+  /* Sihirli Dokunuş: İçerideki tüm ızgarayı 1mm içeri öteler, böylece 
+     en dıştaki siyah çizgiler ile kağıt kenarı arasında tam 1mm boşluk kalır */
+  padding: 1mm !important;
+
+  /* Çerçeve taşmasını önlemek için matematiksel düzeltme:
+     Toplam alan 32mm. Üstten 1mm, alttan 1mm padding çıkınca geriye 30mm kalır.
+     Orijinal 24mm ve 8mm oranını korumak için (3:1 oranı):
+     22.5mm + 7.5mm = 30mm yapar. */
+  display: grid !important;
+  grid-template-rows: 22.5mm 7.5mm !important; 
+
+  /* 270 Derece Döndürme Komutu */
+  transform: rotate(270deg) !important;
+  transform-origin: center !important; 
+}
+
+/* Tüm alt öğeler için marjin sıfırlama ve sınır çizgileri */
+.etiket-kutu-2 * {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.1 !important;
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  border: 0.5px solid #000; 
+}
+
+/* 1. ÜST PANEL */
+.etiket-kutu-2 .ust-panel {
+  display: grid !important;
+  grid-template-columns: 2fr 1fr !important; 
+  height: 100% !important;
+  border: none !important; 
+}
+
+/* Sol taraftaki büyük dikey alan */
+.etiket-kutu-2 .sol-alan {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 4pt;
+  font-weight: bold;
+  height: 100% !important;
+}
+
+/* Sağ taraftaki iki küçük kutunun kapsayıcısı */
+.etiket-kutu-2 .sag-alanlar {
+  display: grid !important;
+  grid-template-rows: 1fr 1fr !important; 
+  height: 100% !important;
+  border: none !important; 
+}
+
+/* Sağ üst ve Sağ alt kutular */
+.etiket-kutu-2 .sag-ust,
+.etiket-kutu-2 .sag-alt {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 10pt;
+  font-weight: bold !important;
+}
+
+/* 2. EN ALT PANEL */
+.etiket-kutu-2 .alt-panel {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  font-size: 12pt;
+  font-weight: bold !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.etiket-kutu-3 {
+  /* Genişlik ve yükseklik ayarları */
+  width: 64mm !important;
+  height: 32mm !important;
+}
+
+  /* Ana tablo */
+.etiket-kutu-3 .etiket-tablo {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-weight: bold;
+}  
+  
   /* ---------------------------------------------------
   /* BAŞLIK VE LOGO BLOKLARI ŞABLON 1 İLE AYNI (tekrar yazmaya gerek yok)           */
   /* CİHAZ TANIMI ŞABLON 1 İLE AYNI                                                 */
