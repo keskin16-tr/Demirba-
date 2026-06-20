@@ -112,24 +112,60 @@ const generateLabel1Html = (row, truncateText) => {
 };
 
 // Şablon 2: Basit Etiket (46mm x 32mm Dikey Düzen)
+//const generateLabel2Html = (row, truncateText) => {
+//    const kurumAdi = truncateText(row.KURUM_ADI || "KURUM ADI", 80);
+//    const qrData = row.QR_KOD || "BOS";
+//    const qrUrl = `/qrcode/${encodeURIComponent(qrData)}`;
+//    const cihazTanimi = truncateText(row.TASINIR_TANIMI || row.URUN_ADI || "CİHAZ TANIMI", 80);
+//    const kunyeNo = row.KUNYE_NO || "KÜNYE NO";
+
+//    return `
+// <div class="etiket-kutu etiket-kutu-2">
+//    <p class="kurum-adi-2">${kurumAdi.substring(22)}</p>
+
+//    <div class="qr-cell-2">
+//        <img src="${qrUrl}" alt="QR Kod">
+//    </div>
+
+//    <div class="veri-alani-2">
+//        <p class="kunye-no-2">${kunyeNo}</p>
+//        <p class="urun-adi-2">${cihazTanimi}</p>
+//    </div>
+// </div>
+// `;
+// };
+
+// Şablon 2: Yeni Basit Etiket (32mm x 32mm Dikey Düzen)
 const generateLabel2Html = (row, truncateText) => {
-    const kurumAdi = truncateText(row.KURUM_ADI || "KURUM ADI", 80);
-    const qrData = row.QR_KOD || "BOS";
-    const qrUrl = `/qrcode/${encodeURIComponent(qrData)}`;
-    const cihazTanimi = truncateText(row.TASINIR_TANIMI || row.URUN_ADI || "CİHAZ TANIMI", 80);
-    const kunyeNo = row.KUNYE_NO || "KÜNYE NO";
+  const qrData = row.QR_KOD || "BOS";
+  const qrUrl = `/qrcode/${encodeURIComponent(qrData)}`;
+  const butceKisa = getButceKisa(row.BUTCE_TURU);
+  const yil = row.EDINME_YILI || "YIL";
+  const kunye = truncateText(row.KUNYE_NO || "KÜNYE", 12);
 
-    return `
-<div class="etiket-kutu etiket-kutu-2">
-    <p class="kurum-adi-2">${kurumAdi.substring(22)}</p>
-
-    <div class="qr-cell-2">
-        <img src="${qrUrl}" alt="QR Kod">
+  return `
+<div class="etiket-kutu-2">
+    <div class="ust-panel">
+        <div class="sol-alan">
+            <span>
+             <div class="qr-cell-2">
+             <img src="${qrUrl}" alt="QR Kod">
+             </div>
+             </span>
+        </div>
+        <div class="sag-alanlar">
+            <div class="sag-ust">
+                <td class="alt-bilgi-deger butce">${butceKisa}</td>
+            </div>
+            <div class="sag-alt">
+            <td class="alt-bilgi-deger">${yil}</td>
+        </div>
+        </div>
     </div>
 
-    <div class="veri-alani-2">
-        <p class="kunye-no-2">${kunyeNo}</p>
-        <p class="urun-adi-2">${cihazTanimi}</p>
+    <div class="alt-panel">
+        <td class="kunye" colspan="2">${kunye}
+        </td>
     </div>
 </div>
 `;
