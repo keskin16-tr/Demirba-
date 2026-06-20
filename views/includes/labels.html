@@ -1,0 +1,54 @@
+<div class="etiket-kutu">
+  <table class="etiket-tablo">
+
+    <tbody>
+      <tr>
+        <td class="baslik-blok" colspan="4">
+           <span class="logo-konteyner">
+              <img src="/images/logo.svg" alt="Kurum Logosu" class="logo-resmi">
+           </span>
+           <span class="kurum">BURSA İL SAĞLIK MÜDÜRLÜĞÜ</span>
+           <span class="kurum-adi"> {{ kurum_adi | substr(22) }} </span> 
+        </td>
+      </tr>
+
+      <tr>
+        <td class="cihaz-tanimi" colspan="3">
+          {{ cihaz_tanimi }}
+        </td>
+        <td class="qr-cell" rowspan="4">
+          <img src="{{ qr_url }}" alt="QR Kod">
+        </td>
+      </tr>
+
+      <tr>
+        <td class="alt-bilgi-deger">{{ marka }}</td>
+        <td class="alt-bilgi-deger">{{ model }}</td>
+        <td class="alt-bilgi-deger">{{ seri_no }}</td>
+      </tr>
+
+      <tr>
+        <td class="alt-bilgi-deger butce">
+            {% if bütçe == 'GENEL BÜTÇE' %}
+                GB
+            {% elif bütçe == 'DÖNER SERMAYE' %}
+                DS
+            {% else %}
+                {{ bütçe }}
+            {% endif %}
+        </td>
+        <td class="sicil" colspan="2">
+            {{ sicil }}
+        </td>
+      </tr>
+
+      <tr>
+        <td class="alt-bilgi-deger">{{ yıl }}</td>
+        <td class="kunye" colspan="2">
+             {{ kunye }}
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>

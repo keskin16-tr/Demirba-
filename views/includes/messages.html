@@ -1,0 +1,10 @@
+{% if messages and messages.length > 0 %}
+    <div class="message-container">
+        {% for msg in messages %}
+            <div class="alert alert-{{ msg.category }} alert-dismissible fade show" role="alert">
+                {{ msg.message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Kapat"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
