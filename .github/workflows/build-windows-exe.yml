@@ -6,10 +6,9 @@ on:
       - 'v*'
   workflow_dispatch: {}
 
-# GitHub'ın Haziran 2026 kurallarına göre uyarılardan kurtulmak için resmi değişkenler
+# Sadece GitHub'ın istediği tek ve kesin değişkeni bırakıyoruz
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
 
 jobs:
   build-exe:
@@ -19,7 +18,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # tag işlemleri için çok önemli!
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -38,16 +37,20 @@ jobs:
       - name: List dist
         run: dir dist
 
-      # Manuel tetiklemelerde veya tag durumlarında etiket kontrolü (PowerShell)
+      # HATA ALAN BÖLGE: Windows/PowerShell uyumlu ve hatayı yutan güvenli tag kontrolü
       - name: Create tag if not exists
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           if ("${{ github.ref_name }}" -like "v*") {
-              echo "Running on explicit tag: ${{ github.ref_name }}"
+              Write-Host "Running on explicit tag: ${{ github.ref_name }}"
           } else {
-              git tag v1.0.0 2>$null || echo "Tag already exists"
-              git push origin v1.0.0 2>$null || echo "Tag already pushed"
+              try {
+                  git tag v1.0.0 2>$null
+                  git push origin v1.0.0 2>$null
+              } catch {
+                  Write-Host "Tag already exists or pushed."
+              }
           }
         shell: powershell
 
