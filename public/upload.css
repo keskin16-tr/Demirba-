@@ -1,0 +1,32 @@
+/* Arka plan Resmi ve Ayarları */
+body { 
+  font-family: Arial, sans-serif; 
+  padding: 240px; 
+  /* Logo dosyasının adını buraya girin */
+  background-image: url('../images/1024px-Logo_of_Ministry_of_Health_(Turkey).png'); 
+  background-repeat: no-repeat; /* Resmi tekrarlama */
+  background-position: center 0%; /* Resmi ortala */
+  background-size: 50%; /* Resmin boyutunu %50 yap (isteğe bağlı, ayarlayabilirsiniz) */
+}
+
+/* Form Kutusu (#myForm) Stilleri */
+#myForm { 
+  /* Yarı saydam beyaz arka plan (alfa değeri 0.8, yani %80 opak) */
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 40px; 
+  border-radius: 0.8px; 
+  box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Gölgeyi belirginleştir */
+  max-width: 1000px; 
+  margin: auto; 
+  margin-top: -200px;
+}
+
+.mb-4{
+margin:40px;
+font-family: "Arial Black", Gadget, sans-serif;
+font-size: 42px;
+font-weight: bold;
+/*color:red;
+/*text-transform: uppercase;
+}
+

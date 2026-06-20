@@ -1,0 +1,167 @@
+/* Genel Arkaplan Resmi ve Şeffaflık Ayarları */
+/* Bu stil, eğer tabloya özel bir kapsayıcı eklenirse (örneğin .table-container) onun için kullanılır. */
+/* Eğer arka plan resmini body'ye eklediyseniz, bu kısım genel stilde (base.css) olmalıdır. */
+.table-container { 
+    /* Bu bir varsayımsal kapsayıcıdır. Eğer tablonuz doğrudan body içindeyse bunu silin. */
+    background-color: rgba(255, 255, 255, 0.8); /* %80 opaklıkta şeffaf beyaz arkaplan */
+    backdrop-filter: blur(5px); /* Arkaplan resminin arkasını hafifçe bulanıklaştırır (Modern Tarayıcılar) */
+    border-radius: 12px; /* Köşeleri yuvarlar */
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Hafif, modern bir gölge */
+    background-image: url('/images/1024px-Logo_of_Ministry_of_Health_(Turkey).png');
+}
+
+/* Filtre Giriş Alanları (Input) */
+.filter-input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px 12px; /* Daha fazla dikey dolgu */
+    margin-top: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Çok hafif şeffaf kenarlık */
+    border-radius: 8px; /* Daha yuvarlak köşeler */
+    font-size: 0.95rem;
+    background-color: rgba(255, 255, 255, 0.7); /* Hafif şeffaf arkaplan */
+    transition: all 0.3s ease; /* Odaklanma için yumuşak geçiş */
+}
+
+.filter-input:focus {
+    border-color: #007bff; /* Odaklandığında belirgin bir renk */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Hafif odak gölgesi */
+    background-color: white; /* Odaklanınca tam opak beyaz */
+    outline: none;
+}
+
+ Veri Tablosu (Data Table) */
+#data_table {
+    /* Tablonun kendisi için şeffaflık ayarları */
+    border-collapse: separate;
+    border-spacing: 0; /* Hücreler arasında boşluk bırakmak için */
+    overflow: hidden; /* Köşe yuvarlatmanın düzgün çalışması için */
+    width: 100% !important; /* DataTables için gereklidir */
+}
+
+#data_table th, #data_table td {
+    vertical-align: middle;
+    white-space: nowrap;
+    font-size: 0.8em; /* Daha rahat okunur font boyutu */
+    padding: 10px; /* Daha fazla dolgu */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Çok ince ayırıcı çizgi */
+    background-color: transparent !important; /* Hücre arkaplanını şeffaf yapar */
+    color: #333; /* Metin rengi, şeffaflıkta kaybolmasın */
+}
+
+ Tablo Başlıkları (Header) */
+#data_table thead th {
+    background-color: rgba(0, 0, 0, 0.05) !important; /* Hafif şeffaf koyu arkaplan */
+    font-weight: 700;
+    color: #343a40; /* Başlık metin rengi */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+ Tablo Başlıkları - İlk ve Son Köşeleri Yuvarlama */
+ Sadece üst kısımdaki ilk ve son başlığı yuvarlar */
+#data_table thead tr:first-child th:first-child {
+    border-top-left-radius: 8px;
+}
+#data_table thead tr:first-child th:last-child {
+    border-top-right-radius: 8px;
+}
+
+ Vurgu (Hover) Efekti */
+#data_table tbody tr:hover td {
+    background-color: rgba(0, 123, 255, 0.1) !important; /* Mavi tonlarda hafif şeffaf vurgu */
+    cursor: pointer;
+}
+
+ DataTables Butonları Kapsayıcısı */
+#dt-buttons-container {
+    margin-left: 0; /* DataTables butonlarını daha iyi hizalar */
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+ DataTables Butonlarının Görünümü */
+ Varsayılan DataTables butonlarını modernleştirir */
+.dt-buttons .btn {
+    border-radius: 6px;
+    background-color: #17a2b8; /* Turkuaz tonu */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dt-buttons .btn:hover {
+    background-color: #138496;
+}
+/* Şablon 2 için özel stil */
+.etiket-kutu-2 {
+    width: 90mm; /* Etiket boyutuna göre ayarlayın */
+    height: 60mm; /* Etiket boyutuna göre ayarlayın */
+    padding: 2mm;
+    border: 1px solid #000;
+    display: flex;
+    box-sizing: border-box;
+    break-after: always;
+}
+
+.qr-cell-2 {
+    flex: 0 0 50mm; /* QR kodu için geniş alan */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px dashed #ccc;
+    padding-right: 5px;
+}
+
+.qr-cell-2 img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.veri-alani-2 {
+    flex: 1;
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.urun-adi-2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.demirbas-no-2 {
+    font-size: 12pt;
+    margin-bottom: 0;
+}
+
+
+/* Sadece şablon seçimi/butonları içeren d-flex bloğunu ortaya hizalamak için */
+form .d-flex.align-items-center.mb-3.gap-3.flex-wrap {
+    /* Auto margin ile ortalama */
+    margin-left: auto;
+    margin-right: auto;
+
+    /* Gerekirse maksimum genişlik ayarlayın ki çok yayılmasın */
+    max-width: fit-content; 
+
+    /* Flex yapısında justify-content: center kullanırız */
+    justify-content: center;
+}
+/* table_view.html'deki ana kapsayıcı */
+.d-flex.align-items-center.mb-3.gap-3.flex-wrap {
+    /* Öğeler arasındaki boşluğu maksimuma çıkarır */
+    justify-content: space-between !important; 
+
+    /* Eğer butonlar sağa kaymıyorsa, buton grubunu esnek yapın: */
+    /*
+    div#dt-buttons-container {
+        margin-left: auto;
+    }
+    */
+}

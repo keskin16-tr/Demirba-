@@ -1,0 +1,76 @@
+/* login.css */
+
+/* Sayfa arka planına genel bir dokunuş */
+body {
+    /* İsteğe bağlı: Hafif bir arka plan rengi veya deseni eklenebilir. */
+    background-color: #f8f9fa; /* Bootstrap'in light rengi */
+
+    background-image: url('../images/1024px-Logo_of_Ministry_of_Health_(Turkey).png'); 
+    background-repeat: no-repeat; /* Resmi tekrarlama */
+    background-position: center top; /* Resmi ortala */
+    background-size: 50%; /* Resmin boyutunu %50 yap (isteğe bağlı, ayarlayabilirsiniz) */
+}
+
+/* Giriş formunun bulunduğu ana container'ı (col-md-5) stilize etme */
+.row.justify-content-center.mt-5 {
+    /* Bu satır, formun dikey olarak biraz aşağıda olmasını sağlar (mt-5) */
+    padding-top: 3rem; /* Üstten ek boşluk için opsiyonel */
+}
+
+/* Kart (Card) bileşenine stil */
+.card {
+    border-radius: 1rem; /* Daha yuvarlak köşeler */
+    border: none; /* Varsayılan Bootstrap border'ı kaldırılabilir */
+}
+
+/* Kartın gölge (shadow-lg) etkisini biraz daha belirginleştirebiliriz (isteğe bağlı) */
+.card.shadow-lg {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Başlık stili */
+.h2.mb-4.text-center {
+    color: #343a40; /* Koyu gri başlık rengi */
+    font-weight: 600;
+}
+
+/* Giriş alanı etiketleri (label) */
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+
+/* Form Kontrolü (Input alanları) */
+.form-control {
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Odaklandığında mavi border */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Giriş Yap butonu */
+.btn-primary.w-100 {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-primary.w-100:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Mesajlar (alert) için hafif stil */
+.alert {
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+}

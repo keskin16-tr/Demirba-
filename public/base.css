@@ -1,0 +1,71 @@
+/* Arka plan Resmi ve Ayarları */
+.body { 
+  font-family: Arial, sans-serif; 
+  padding: 0px; 
+  /* Logo dosyasının adını buraya girin */
+  background-image: url('images/1024px-Logo_of_Ministry_of_Health_(Turkey).png'); 
+  background-repeat: no-repeat; /* Resmi tekrarlama */
+  background-position: center top; /* Resmi ortala */
+  background-size: 50%; /* Resmin boyutunu %50 yap (isteğe bağlı, ayarlayabilirsiniz) */
+}
+
+.card {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+.card-body {
+    background-color: transparent !important;
+    
+}
+	.navbar-brand{
+	font-family: "Arial Black", Gadget, sans-serif; 
+	font-size: 30px;
+	font-weight: bold; 
+	/* color:green; */
+	}
+
+    .navbar-nav:last-child .nav-item .nav-link {
+	display: flex; 
+	align-items: center;
+        font-size: 16px;
+        /* color: red !important; /* Rengi kırmızıya ayarlar ve Bootstrap stillerini ezer */
+//	text-transform: uppercase;
+	font-weight: bold;
+    }
+/* Genel Stil: Etiket yazdırma görünümü için */
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            .no-print {
+                display: none !important;
+            }
+            /* Etiket Kutusu Sınıfı (Yazdırılan her bir etiket) */
+            .etiket-kutu {
+                border: 1px dashed #ccc; /* Önizlemede daha yumuşak bir sınır */
+                padding: 5px;
+                width: 100mm; /* Örnek etiket genişliği */
+                min-height: 50mm;
+                margin-bottom: 10px;
+                page-break-inside: avoid; /* Sayfa sonuna gelince etiketi bölmez */
+            }
+            .label-cell {
+                padding: 2px !important;
+                border: 1px solid #333 !important;
+                /* Flexbox ortalama: app.py'de yapıldığı için burada sadece varsayılan tablo stili kalır */
+            }
+            /* QR kodlar için stil */
+            .label-cell img {
+                max-width: 100%;
+                height: auto;
+                display: block; /* Merkezleme için */
+            }
+        }
+        /* Geriye kalan kısımlar */
+        .preview-box {
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
