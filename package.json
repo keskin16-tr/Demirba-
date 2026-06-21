@@ -15,31 +15,21 @@
     "qrcode": "^1.5.3",
     "xlsx": "^0.18.5"
   },
-
   "pkg": {
-    "targets": ["node18-win-x64"],
+    "targets": [
+      "node18-win-x64"
+    ],
     "outputPath": "dist",
     "assets": [
       "views/**/*",
       "public/**/*",
       "users.json"
-    ],
-    "assets": [
-      "views/**/*",
-      "public/**/*",
-      "users.json"
-    ],
-    "targets": [
-      "node18-win-x64"
-    ],
-    "outputPath": "dist"
+    ]
   },
-  
   "scripts": {
     "start": "node server.js",
     "build:pkg": "pkg . --out-path dist"
   },
-  
   "engines": {
     "node": ">=18.x"
   }
