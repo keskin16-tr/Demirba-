@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2.328.0
         with:
           fetch-depth: 0   # tag işlemleri için çok önemli!
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2.328.0
         with:
           node-version: '24'
 
