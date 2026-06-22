@@ -1,16 +1,15 @@
 name: Build Windows EXE (pkg) & Release
 
-  on:
+on:
   push:
     branches:
-      - main     # master kullanıyorsanız master yazın
+      - main    # Eğer ana dalınız 'master' ise burayı master yapın
     tags:
       - 'v*'
   workflow_dispatch: {}
 
-
 env:
-  # GitHub Actions'ın zorunlu Node 24 geçiş uyarısını tamamen susturur
+  # GitHub Actions'ın Node 24 geçiş uyarılarını tamamen kapatır
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
@@ -19,29 +18,31 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0   # Tag bazlı release işlemleri için kritik
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '24' # Kararlı güncel Node sürümü
 
-      # Katı lock dosyası kontrolü yerine bağımlılıkları esnek ve güvenli yükler
+      # Ana dizindeki package.json bağımlılıklarını güvenli yükler
       - name: Install dependencies
         run: npm install
 
+      # Global pkg kurulumu
       - name: Install pkg
         run: npm install -g pkg
 
+      # Ana dizindeki build:pkg scriptini çalıştırır
       - name: Build exe with pkg
         run: npm run build:pkg
 
       - name: List dist
         run: dir dist
 
-      # Windows PowerShell ortamında hata fırlatmayan güvenli Git kontrolü
+      # Windows PowerShell ortamında güvenli Git kontrolü
       - name: Create tag if not exists
         run: |
           git config user.name "github-actions"
