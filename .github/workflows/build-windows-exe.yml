@@ -40,7 +40,7 @@ jobs:
       - name: List dist
         run: dir dist
 
-      # Windows PowerShell ortamında güvenli Git kontrolü
+      # Windows PowerShell ortamında çakışmaları yutan ve hata fırlatmayan Git kontrolü
       - name: Create tag if not exists
         run: |
           git config user.name "github-actions"
@@ -48,15 +48,19 @@ jobs:
           if ("${{ github.ref_name }}" -like "v*") {
               Write-Host "Running on explicit tag: ${{ github.ref_name }}"
           } else {
-              try {
-                  git tag v1.0.1 2>$null
+              # Tag'in yerelde veya uzakta olup olmadığını kontrol et
+              $tagExists = git tag -l "v1.0.1"
+              if (-not $tagExists) {
+                  git tag v1.0.1
                   git push origin v1.0.1 2>$null
-              } catch {
-                  Write-Host "Tag already exists or pushed."
+                  Write-Host "Tag v1.0.1 created and pushed."
+              } else {
+                  Write-Host "Tag v1.0.1 already exists. Skipping tag creation safely."
               }
           }
         shell: powershell
 
+      # EXE dosyasını GitHub Releases kısmına yükleyen adım
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -64,4 +68,3 @@ jobs:
           files: dist/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          
