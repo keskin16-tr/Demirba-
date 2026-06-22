@@ -1,11 +1,36 @@
+/* 🔹 EKRAN ÖNİZLEME */
+.etiket-kutu {
+  width: {{ labelWidth }}mm;
+  height: {{ labelHeight }}mm;
+  box-sizing: border-box;
+  border: 1px dashed #999;
+  margin: 5mm;
+  overflow: hidden;
+  background: #fff;
+}
+
+/* 🔹 YAZDIRMA */
 @media print {
+  .etiket-kutu {
+    width: {{ labelWidth }}mm;
+    height: {{ labelHeight }}mm;
+    margin: 0;
+    border: none;
+    page-break-after: always;
+  }
+
+  @page {
+    size: {{ labelWidth }}mm {{ labelHeight }}mm;
+    margin: 0;
+  }
+}
   /* Yazdırma boyutları */
-@page {
+/*@page {
   size: 74mm 32mm;
   margin: 0mm;
   padding-top: 2mm; 
   padding-left: 2mm;
-}
+} */
 
 .message-container { display: none !important; }
   body {
@@ -21,7 +46,6 @@
   height: 32mm !important;
   border: 1px solid black;
   padding: 0;
-  margin: 4mm;
 //    margin-left: 2mm;
 //    margin-top: 1mm;
   box-sizing: border-box;
@@ -31,7 +55,7 @@
 }
 
     /* ---------------------------------------------------- */
-    /* ŞABLON 1: DETAYLI ETİKET (TABLO)                     */
+    /* ŞABLON 1: DETAYLI ETİKET           */
     /* ---------------------------------------------------- */
 
   /* Ana tablo */
@@ -157,105 +181,107 @@
 }
 
   /* ---------------------------------------------------- */
-  /* ŞABLON 2: KESİN SINIRLANDIRILMIŞ DİKEY TASARIM       */
+  /* ŞABLON 2: KESİN SINIRLANDIRILMIŞ DİKEY TASARIM */
   /* ---------------------------------------------------- */
-
-//  .etiket-kutu-2 {
-//      /* 22mm x 32mm kesin kilit */
-//      width: 22mm !important; 
-//      height: 32mm !important;
+/*
+.etiket-kutu-2 {
+      /* 22mm x 32mm kesin kilit */
+/*      width: 22mm !important; 
+      height: 32mm !important;
 //      padding: 0.5mm !important;
-//      box-sizing: border-box !important;
-//      overflow: hidden !important; /* Dışarı asla taşamaz */
-//    page-break-after: always !important;
-//    page-break-inside: avoid !important;
-//    /* Flexbox'ı sadece etiket-kutu-2 kullanacağı için, genel kutuda tanımlamıyoruz */
+      box-sizing: border-box !important;
+      overflow: hidden !important; /* Dışarı asla taşamaz */
+/*    page-break-after: always !important;
+    page-break-inside: avoid !important;
+    /* Flexbox'ı sadece etiket-kutu-2 kullanacağı için, genel kutuda tanımlamıyoruz */
 
-//      /* ETİKET TAŞIYORDU — DÜZELTİLDİ */
-//      display: flex !important;
-//      flex-direction: column !important;
-//      align-items: center !important;
-//      justify-content: space-between !important;
+      /* ETİKET TAŞIYORDU — DÜZELTİLDİ */
+/*      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
 
-//      background-color: white;
-//      page-break-after: always !important;
-//  }
+      background-color: white;
+      page-break-after: always !important;
+  }
 
-//  /* Tüm alt öğeler için marjin sıfırlama */
-//  .etiket-kutu-2 * {
-//      margin: 0 !important;
-//      padding: 0 !important;
-//      line-height: 1.1 !important;
-//      box-sizing: border-box !important;
-//      max-width: 100% !important;
-//  }
+  /* Tüm alt öğeler için marjin sıfırlama */
+/*  .etiket-kutu-2 * {
+      margin: 0 !important;
+      padding: 0 !important;
+      line-height: 1.1 !important;
+      box-sizing: border-box !important;
+      max-width: 100% !important;
+  }
 
-//  /* 1. KURUM ADI (3mm) */
-//  .etiket-kutu-2 .kurum-adi-2 {
-//      height: 4mm !important;
-//      font-size: 5pT !important;
-//      font-weight: 900;
-//      text-align: center;
-//      overflow: hidden;
-//      white-space: wrap;
-//      display: flex;
-//      align-items: center;
-//      justify-content: center;
-//  }
+  /* 1. KURUM ADI (3mm) */
+/*  .etiket-kutu-2 .kurum-adi-2 {
+      height: 4mm !important;
+      font-size: 5pT !important;
+      font-weight: 900;
+      text-align: center;
+      overflow: hidden;
+      white-space: wrap;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
 
-//  /* 2. QR KOD (14mm – taşmayı önler) */
-//  .etiket-kutu-2 .qr-cell-2 {
-//      height: 20mm !important;
-//      width: 20mm !important;
-//      display: flex !important;
-//      align-items: center;
-//      justify-content: center;
-//      flex-shrink: 0;
-//  }
+  /* 2. QR KOD (14mm – taşmayı önler) */
+/*  .etiket-kutu-2 .qr-cell-2 {
+      height: 20mm !important;
+      width: 20mm !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+  }
 
-//  .etiket-kutu-2 .qr-cell-2 img {
-//      max-width: 100% !important;
-//      max-height: 100% !important;
-//      display: block;
-//  }
+  .etiket-kutu-2 .qr-cell-2 img {
+      max-width: 100% !important;
+      max-height: 100% !important;
+      display: block;
+  }
 
-//  /* 3. ALT VERİ ALANI (Kalan alan) */
-//  .etiket-kutu-2 .veri-alani-2 {
-//      width: 100%;
-//      height: 7mm !important;
-//      display: flex;
-//      flex-direction: column;
-//      align-items: center;
-//      justify-content: center;
-//      overflow: hidden;
-//  }
+  /* 3. ALT VERİ ALANI (Kalan alan) */
+/*  .etiket-kutu-2 .veri-alani-2 {
+      width: 100%;
+      height: 7mm !important;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+  }
 
-//  /* KÜNYE NO */
-//  .etiket-kutu-2 .kunye-no-2 {
-//      height: 5mm !important;
-//      font-size: 9pt !important;
-//      font-weight: bold;
-//      text-align: center;
-//      white-space: nowrap;
-//      overflow: hidden;
-//  }
+  /* KÜNYE NO */
+/*  .etiket-kutu-2 .kunye-no-2 {
+      height: 5mm !important;
+      font-size: 9pt !important;
+      font-weight: bold;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+  }
 
-//  /* ÜRÜN ADI (maks 2 satır) */
-//  .etiket-kutu-2 .urun-adi-2 {
-//      height: 4mm !important;
-//      font-size: 4px !important;
-//      text-align: center;
-//      overflow: hidden;
+  /* ÜRÜN ADI (maks 2 satır) */
+/*  .etiket-kutu-2 .urun-adi-2 {
+      height: 4mm !important;
+      font-size: 4px !important;
+      text-align: center;
+      overflow: hidden;
 
-//      display: -webkit-box;
-//      -webkit-line-clamp: 2;
-//      -webkit-box-orient: vertical;
-//  }
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+  }
+*/
 
-    /* ---------------------------------------------------- */
-    /* ŞABLON 2: BASİT ETİKET (TABLO)                     */
-    /* ---------------------------------------------------- */
-  
+
+/* ---------------------------------------------------- */
+/* ŞABLON 2: BÜTÇE VE YIL ALANI EKLENMİŞ DİKEY TASARIM  */
+/* ---------------------------------------------------- */
+
 .etiket-kutu-2 {
   /* Orijinal kesin kilit boyutlar */
   width: 32mm !important; 
@@ -265,6 +291,8 @@
   page-break-after: always !important;
   page-break-inside: avoid !important;
   background-color: white;
+  margin-left: 2mm;
+  margin-top: 2mm;
 
   /* Sihirli Dokunuş: İçerideki tüm ızgarayı 1mm içeri öteler, böylece 
      en dıştaki siyah çizgiler ile kağıt kenarı arasında tam 1mm boşluk kalır */
@@ -334,35 +362,25 @@
   align-items: center;
   justify-content: center;
   font-size: 12pt;
-  font-weight: bold !important;
+  color: black !important;
+  font-weight: 900 !important;
+  font-family: arial, sans-serif !important;
   width: 100% !important;
   height: 100% !important;
 }
 
-.etiket-kutu-3 {
-  /* Genişlik ve yükseklik ayarları */
-  width: 64mm !important;
-  height: 32mm !important;
-}
 
-  /* Ana tablo */
-.etiket-kutu-3 .etiket-tablo {
-  width: 100%;
-  height: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-  font-weight: bold;
-}  
-  
-  /* ---------------------------------------------------
-  /* BAŞLIK VE LOGO BLOKLARI ŞABLON 1 İLE AYNI (tekrar yazmaya gerek yok)           */
-  /* CİHAZ TANIMI ŞABLON 1 İLE AYNI                                                 */
+/* ---------------------------------------------------
+  /* BAŞLIK VE LOGO BLOKLARI ŞABLON 1 İLE AYNI (tekrar yazmaya gerek yok) */
+  /* CİHAZ TANIMI ŞABLON 1 İLE AYNI */
   /* SADECE ŞABLON 3'E ÖZEL YENİ SATIR: 3. SATIR (Marka/Model alanı Sadeleştirildi) */
 
 .etiket-kutu-3 {
   /* Genişlik ve yükseklik ayarları */
   width: 64mm !important;
   height: 32mm !important;
+  margin-left: 2mm !important;
+  margin-top: 2mm;
 }
 
   /* Ana tablo */
@@ -452,7 +470,7 @@
 .etiket-kutu-3 .cihaz-tanimi {
   font-weight: bold;
 /*  font-size: clamp(4pt, 1vw, 5pt) !important; */
-  font-size: 5pt !important;
+  font-size: 7pt !important;
   height: auto !important;
   max-height: 10mm !important;
   color: black !important;
@@ -469,6 +487,22 @@
   color: black !important;
 }
 
+  /* 🔥 YIL (ilk td) */
+ /* .etiket-kutu-3 .etiket-tablo tr:nth-child(5) td:first-child {
+    font-size: 5pt !important;
+    font-weight: bold;
+  }*/
+
+  /* 5. Satır – Künye numarası */
+/*.etiket-kutu-3 .nth-child(5) .yil {
+  font-size: 6pt !important;
+  font-weight: bold;
+  color: black !important;
+  background-color: white !important;
+  height: 5mm !important;
+  vertical-align: middle !important;
+}/*
+
   /* 5. Satır – Künye numarası */
 .etiket-kutu-3 .kunye {
   font-size: 9pt !important;
@@ -479,11 +513,41 @@
   vertical-align: middle !important;
 }
 
+/*.etiket-kutu-3 .nth-child(5) td {
+  font-size: 6pt;
+  font-weight: bold !important;
+  color: black !important;
+  background-color: #eee;
+  height: 5mm !important;
+  vertical-align: middle !important;
+}*/
+
+  /* 4. Satır (Bütçe/Sicil) ve 5. Satır (Yıl/Künye) Şablon 1 ile aynı kalır. */
+/*.etiket-kutu-3  .nth-child(4) td,
+.etiket-kutu-3  .nth-child(5) td {
+  height: 6mm;
+  font-weight: bold;
+  font-size: 6pt;
+}*/
+
+/*.etiket-kutu-3 .nth-child(5) td {
+  background-color: white !important;
+  color: black !important
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;  
+}*/
+
 .etiket-kutu-3 .etiket-tablo tr:nth-child(4) td.alt-bilgi-deger {
   font-size: 7pt !important;
   font-weight: bold !important;
   color: black !important;
 }
+
+/*.etiket-kutu-3 .etiket-tablo tr:nth-child(5) .kunye {
+  font-size: 9pt !important;
+  font-weight: 900 !important;
+  color: black !important;
+}*/
 
   /* QR Kod hücresi */
 .etiket-kutu-3 .qr-cell {
@@ -501,7 +565,7 @@
 }
 
 /* ---------------------------------------------------- */
-/* ŞABLON 4: YATAY ŞERİT (DÜZELTİLMİŞ)                  */
+/* ŞABLON 4: YATAY ŞERİT (DÜZELTİLMİŞ)                   */
 /* ---------------------------------------------------- */
 .etiket-kutu-4 {
     display: flex !important; /* 'fixed' geçersizdi, yatay dizilim için flex kullanıldı */
@@ -513,7 +577,7 @@
     box-sizing: border-box !important;
 //    margin-top: 1mm !important;
 //    margin-left: 2mm !important;
-//    margin-bottom: -2mm !important;
+//   margin-bottom: -2mm !important;
     padding: 1mm;
     page-break-after: always !important;
     page-break-inside: avoid !important;
@@ -543,7 +607,7 @@
 .etiket-kutu-4 .k4-kunye-text {
     font-size: 8pt !important;
     font-weight: 900;
-//    margin-top: 1mm;
+    margin-top: 1mm;
     text-align: center;
     color: black !important;
 }
@@ -565,7 +629,7 @@
     align-items: flex-start;
     border-bottom: 1pt solid black;
     padding-bottom: 1mm;
-//    margin-bottom: 1mm;
+    margin-bottom: 1mm;
 }
 
 .etiket-kutu-4 .k4-baslik {
@@ -580,7 +644,7 @@
 .etiket-kutu-4 .k4-logo-sag {
     height: 9mm;
     width: auto;
-//    margin-left: 2mm;
+    margin-left: 2mm;
     /* Renkli logolar için siyah-beyaz filtresi: */
     /* filter: grayscale(1); */
 }
@@ -616,15 +680,15 @@
   height: 32mm !important;
   padding: 1px 2px !important; /* Üst/Alt padding ayarı */
   box-sizing: border-box !important;
-  // margin-top: 1mm !important;
-  // margin-left: 2mm !important;
+//  margin-top: 1mm !important;
+//  margin-left: 2mm !important;
 }
 
 .etiket-kutu-5 .k5-ust {
     background-color: black !important;
     color: white !important;
     text-align: center;
-    font-size: 6pt !important;
+    font-size: 8pt !important;
     font-weight: bold;
     padding: 1mm 0;
     -webkit-print-color-adjust: exact;
@@ -676,7 +740,7 @@
 }
 
 /* ---------------------------------------------------- */
-/* ŞABLON 6: HİZMET ALIMI                               */
+/* ŞABLON 6: MİNİMALİST KARE                            */
 /* ---------------------------------------------------- */
 .etiket-kutu-6 {
     display: flex !important;
@@ -706,8 +770,8 @@
     width: 24mm;
     height: 24mm;
   display: block; /* Blok haline getirir */
-//  margin-right: auto; /* Sağdan boşluk vererek sola iter */
-//  margin-left: 0;
+  margin-right: auto; /* Sağdan boşluk vererek sola iter */
+  margin-left: 0;
 }
 
 .etiket-kutu-6 .k6-kunye {
@@ -716,8 +780,8 @@
     margin-top: -2mm;
     color: black !important;
     display: block; /* Blok haline getirir */
-//    margin-right: auto; /* Sağdan boşluk vererek sola iter */
-//    margin-left: 2mm;
+    margin-right: auto; /* Sağdan boşluk vererek sola iter */
+    margin-left: 2mm;
 }
 
 .etiket-kutu-6 .k6-yan-yazi {
@@ -731,4 +795,49 @@
     text-align: center;
     color: black;
     border-bottom: 0.5pt solid #ccc;
+}
+
+/* ------------------------------------------------------------ */
+/* GERÇEK ZAMANLI ÖNİZLEME KONTROL PANELİ */
+/* ------------------------------------------------------------ */
+/* Önizleme Konteynırı */
+.preview-container {
+    background: #808080;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+}
+
+/* Gerçek Boyutlu Etiket */
+#labelPreview {
+    background: white;
+    border: 1px solid #000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s ease; /* Boyut değişirken animasyon */
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* Cetvel çizgisi (Opsiyonel: Boyutu anlamak için) */
+.size-info {
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+@media print {
+    /* Yazdırma sırasında görünmesini istemediğin her şeyi buraya ekle */
+    .printer-status, 
+    #bpacStatus, 
+    .no-print,
+    .btn,
+    nav {
+        display: none !important;
+    }
 }
