@@ -9,7 +9,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  # GitHub Actions'ın Node 24 geçiş uyarılarını tamamen kapatır
+  # Node 24 geçiş uyarılarını susturur
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
@@ -18,22 +18,52 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   # Tag bazlı release işlemleri için kritik
+        uses: actions/checkout@v6 # Güncellendi!
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6 # Güncellendi!
         with:
-          node-version: '24' # Kararlı güncel Node sürümü
+          node-version: '24'
 
-      # Ana dizindeki package.json bağımlılıklarını güvenli yükler
+      # Bağımlılıkları yükler
       - name: Install dependencies
         run: npm install
 
       # Global pkg kurulumu
       - name: Install pkg
         run: npm install -g pkg
+
+      # Ana dizindeki build:pkg scriptini çalıştırır
+      - name: Build exe with pkg
+        run: npm run build:pkg
+
+      - name: List dist
+        run: dir dist
+
+      # Windows PowerShell ortamında güvenli Git kontrolü
+      - name: Create tag if not exists
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          if ("${{ github.ref_name }}" -like "v*") {
+              Write-Host "Running on explicit tag: ${{ github.ref_name }}"
+          } else {
+              try {
+                  git tag v1.0.1 2>$null
+                  git push origin v1.0.1 2>$null
+              } catch {
+                  Write-Host "Tag already exists or pushed."
+              }
+          }
+        shell: powershell
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || 'v1.0.1' }}
+          files: dist/*.exe
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Ana dizindeki build:pkg scriptini çalıştırır
       - name: Build exe with pkg
