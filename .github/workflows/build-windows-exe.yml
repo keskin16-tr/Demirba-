@@ -8,8 +8,11 @@ on:
       - 'v*'
   workflow_dispatch: {}
 
+# GitHub Actions botuna repoya yazma ve release oluşturma yetkisi verir
+permissions:
+  contents: write
+
 env:
-  # Node 24 geçiş uyarılarını tamamen kapatır
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 jobs:
@@ -25,22 +28,19 @@ jobs:
         with:
           node-version: '24'
 
-      # Bağımlılıkları yükler
       - name: Install dependencies
         run: npm install
 
-      # Global pkg kurulumu
       - name: Install pkg
         run: npm install -g pkg
 
-      # package.json içindeki "build" scriptini çalıştırır (pkg . --out-path dist)
       - name: Build exe with pkg
         run: npm run build
 
       - name: List dist
         run: dir dist
 
-      # Windows PowerShell ortamında çakışmaları yutan ve hata fırlatmayan Git kontrolü
+      # Geliştirilmiş, hata fırlatmayan akıllı Git Tag kontrolü
       - name: Create tag if not exists
         run: |
           git config user.name "github-actions"
@@ -48,19 +48,23 @@ jobs:
           if ("${{ github.ref_name }}" -like "v*") {
               Write-Host "Running on explicit tag: ${{ github.ref_name }}"
           } else {
-              # Tag'in yerelde veya uzakta olup olmadığını kontrol et
-              $tagExists = git tag -l "v1.0.1"
-              if (-not $tagExists) {
-                  git tag v1.0.1
-                  git push origin v1.0.1 2>$null
-                  Write-Host "Tag v1.0.1 created and pushed."
+              # Uzak sunucudaki (GitHub) tag'leri kontrol et
+              $remoteTags = git ls-remote --tags origin
+              if ($remoteTags -match "refs/tags/v1.0.1") {
+                  Write-Host "Tag v1.0.1 zaten GitHub üzerinde var. İşlem atlanıyor."
               } else {
-                  Write-Host "Tag v1.0.1 already exists. Skipping tag creation safely."
+                  Write-Host "Tag v1.0.1 bulunamadı, oluşturuluyor..."
+                  git tag v1.0.1
+                  # Hata oluşsa bile adımı çökertmemek için try-catch yapısı
+                  try {
+                      git push origin v1.0.1
+                  } catch {
+                      Write-Warning "Tag push edilemedi, muhtemelen yetki hatası veya tag zaten var."
+                  }
               }
           }
         shell: powershell
 
-      # EXE dosyasını GitHub Releases kısmına yükleyen adım
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
@@ -68,3 +72,4 @@ jobs:
           files: dist/*.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
