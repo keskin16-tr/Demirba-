@@ -1,10 +1,13 @@
 name: Build Windows EXE (pkg) & Release
 
-on:
+  on:
   push:
+    branches:
+      - main     # master kullanıyorsanız master yazın
     tags:
       - 'v*'
   workflow_dispatch: {}
+
 
 env:
   # GitHub Actions'ın zorunlu Node 24 geçiş uyarısını tamamen susturur
