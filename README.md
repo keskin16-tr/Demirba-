@@ -19,3 +19,12 @@ WScript.Sleep 500
 
 ' 4. Tarayıcıyı http://localhost:3000 adresine yönlendirin
 shell.Run "http://localhost:3000/"
+
+
+//Windows Yazıcı Sürücüsü Ayarı (Kritik Adım)
+
+Tarayıcıdan gönderilen auto komutunun fiziksel olarak cihazda karşılık bulması için Windows denetim masasından Brother yazıcınızın ayarlarına gidin:
+1-Yazdırma Tercihleri (Printing Preferences) menüsünü açın.
+2-Sayfa Yapısı (Page Setup) sekmesinden "Continuous Tape" (Sürekli Şerit) modunu seçin.
+3-Uzunluk (Length) ayarını "Auto" (Otomatik) olarak işaretleyin.
+4-Kesim ayarlarından (Kağıt Kesme / Cutter) "Chain Print" (Zincirleme Baskı) veya "Cut at End" (Sonunda Kes) seçeneğini aktif edin.
